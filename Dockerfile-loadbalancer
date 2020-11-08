@@ -1,0 +1,8 @@
+FROM nginx
+
+WORKDIR /app
+
+EXPOSE 80
+
+COPY ./conf/nginx/app.conf /etc/nginx/conf.d/default.conf
+COPY ./src/public /app/public

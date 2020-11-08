@@ -3,16 +3,16 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: my-app
-  name: my-app
+    app: app
+  name: app
 spec:
   ports:
-  - name: 80-80
-    port: 80
+  - name: 9000-9000
+    port: 9000
     protocol: TCP
-    targetPort: 80
+    targetPort: 9000
   selector:
-    app: my-app
+    app: app
   type: ClusterIP
 status:
   loadBalancer: {}

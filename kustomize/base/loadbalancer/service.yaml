@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app-loadbalancer
+  name: app-loadbalancer
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: app-loadbalancer
+  type: ClusterIP
+status:
+  loadBalancer: {}

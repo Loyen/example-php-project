@@ -3,22 +3,22 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: my-app
-  name: my-app
+    app: app-loadbalancer
+  name: app-loadbalancer
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-app
+      app: app-loadbalancer
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: my-app
+        app: app-loadbalancer
     spec:
       containers:
-      - image: localhost:32000/my-app
-        name: my-app
+      - image: localhost:32000/app-loadbalancer
+        name: app-loadbalancer
         resources: {}
 status: {}
