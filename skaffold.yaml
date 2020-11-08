@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta6
+kind: Config
+metadata:
+  name: kustomize-php-app-test
+build:
+  artifacts:
+  - image: localhost:32000/my-app
+deploy:
+  kustomize:
+    paths:
+    - kustomize/base
+profiles:
+- name: local
+  deploy:
+    kubeContext: microk8s
+    kustomize:
+      paths:
+      - kustomize/overlays/local
