@@ -7,6 +7,10 @@ metadata:
   name: app
 spec:
   ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
   - name: 9000-9000
     port: 9000
     protocol: TCP
