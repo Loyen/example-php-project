@@ -18,8 +18,8 @@ spec:
         app: app
     spec:
       containers:
-      - image: localhost:32000/app
-        name: app
+      - image: localhost:32000/app-frontend
+        name: app-frontend
         ports:
         - containerPort: 9000
         resources: {}

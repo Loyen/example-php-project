@@ -4,7 +4,9 @@ metadata:
   name: kustomize-php-app-test
 build:
   artifacts:
-  - image: localhost:32000/app
+  - image: localhost:32000/app-frontend
+    docker:
+      dockerfile: Dockerfile-frontend
   - image: localhost:32000/app-loadbalancer
     docker:
       dockerfile: Dockerfile-loadbalancer
