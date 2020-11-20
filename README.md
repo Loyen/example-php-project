@@ -14,4 +14,4 @@ When we run `skaffold run -plocal` to deploy the project to Kubernetes using the
 * `app-frontend`
 * `app-loadbalancer`
 
-These will copy our configuration as well as the source code into the the images and then use these images in our deployment. If we use `skaffold dev -plocal` these images will be rebuilt everytime our configuration or source code changes.
+These will copy our configuration as well as the source code into the images and then use these images in our deployment. If we use `skaffold dev -plocal` these images will be rebuilt everytime our configuration or source code changes.
