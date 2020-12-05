@@ -28,4 +28,7 @@ spec:
         ports:
         - containerPort: 80
         resources: {}
+        env:
+          - name: FASTCGI_PASS
+            value: "127.0.0.1:9000"
 status: {}
