@@ -17,7 +17,6 @@ deploy:
 profiles:
 - name: local
   deploy:
-    kubeContext: microk8s
     kustomize:
       paths:
       - kustomize/overlays/local
