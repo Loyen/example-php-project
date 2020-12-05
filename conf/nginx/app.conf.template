@@ -9,7 +9,7 @@ server {
         try_files $uri $uri/ /index.php;
     }
 
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+    # pass the PHP scripts to FastCGI server listening on the address $FASTCGI_PASS is set to.
     #
     location ~ \.php$ {
         root           /app/public;
