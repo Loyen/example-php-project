@@ -11,7 +11,7 @@ When we run the project through `docker-compose up`, we start two containers:
 These use the official images from Nginx and PHP-FPM which we then mount our configuration and source code into using volumes.
 
 When we run `skaffold run -plocal` to deploy the project to Kubernetes using the local profile, it builds two docker images prior to deployment:
-* `app-frontend`
+* `app-backend`
 * `app-loadbalancer`
 
 These will copy our configuration as well as the source code into the images and then use these images in our deployment. If we use `skaffold dev -plocal` these images will be rebuilt everytime our configuration or source code changes.
