@@ -23,9 +23,9 @@ spec:
         resources: {}
       - image: app-loadbalancer
         name: app-loadbalancer
+        resources: {}
         ports:
         - containerPort: 80
-        resources: {}
         env:
           - name: FASTCGI_PASS
             value: "127.0.0.1:9000"

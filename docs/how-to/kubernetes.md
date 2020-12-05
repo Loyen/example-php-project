@@ -44,6 +44,18 @@ kubectl create deployment app --image=app-loadbalancer --image=app-backend -o ya
 
 This will create a deployment configuration named `app` containing two containers (`app-loadbalancer` and `app-backend`) that uses images with the same name as the containers. Since we want to output the configuration file in yaml and also not actually create the deployment just yet, we use `-o yaml` and `--dry-run=client` to output the created configuration instead and then redirect it to the file `deployment.yaml`.
 
+As the app-loadbalancer requires environment variables to fill in the nginx configuration template, we will have to add this afterwards. We also want to tell that this container exposes port `80`. Open the file up and amend the `app-loadbalancer` with the following data:
+```
+       - image: app-loadbalancer
+         name: app-loadbalancer
+         resources: {}
++        ports:
++        - containerPort: 80
++        env:
++          - name: FASTCGI_PASS
++            value: "127.0.0.1:9000"
+```
+
 Now we need to create a service. In a similar fashion we can run:
 
 ```
