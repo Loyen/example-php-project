@@ -18,8 +18,8 @@ spec:
         app: app
     spec:
       containers:
-      - image: app-frontend
-        name: app-frontend
+      - image: app-backend
+        name: app-backend
         resources: {}
       - image: app-loadbalancer
         name: app-loadbalancer

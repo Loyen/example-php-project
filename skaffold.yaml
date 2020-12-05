@@ -4,9 +4,9 @@ metadata:
   name: example-php-project
 build:
   artifacts:
-  - image: app-frontend
+  - image: app-backend
     docker:
-      dockerfile: Dockerfile-frontend
+      dockerfile: Dockerfile-backend
   - image: app-loadbalancer
     docker:
       dockerfile: Dockerfile-loadbalancer
