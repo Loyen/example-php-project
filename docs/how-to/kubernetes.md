@@ -25,7 +25,6 @@ You will also need a Kubernetes cluster. I've used [Mikrok8s](https://microk8s.i
 ## Creating a base
 
 Let's start off by creating the directories needed to create our configuration and go to the base directory.
-
 ```
 $ mkdir -p kustomize/base
 $ cd kustomize/base
@@ -37,14 +36,13 @@ Now, we will need to create three files:
 * A Kustomization file that includes all resources that should be deployed (deployment+service and what else you might want to add).
 
 We will start off by creating the deployment file. We can for the most part generate this file using `kubectl create`.
-
 ```
 kubectl create deployment app --image=app-loadbalancer --image=app-backend -o yaml --dry-run=client > deployment.yaml
 ```
 
-This will create a deployment configuration named `app` containing two containers (`app-loadbalancer` and `app-backend`) that uses images with the same name as the containers. Since we want to output the configuration file in yaml and also not actually create the deployment just yet, we use `-o yaml` and `--dry-run=client` to output the created configuration instead and then redirect it to the file `deployment.yaml`.
+This will create a deployment configuration named `app` containing two containers (`app-loadbalancer` and `app-backend`) that uses images with the same name as the containers. Since we want to output the configuration file in yaml and also not actually create the deployment just yet, we use `-o yaml` and `--dry-run=client` to output the created configuration instead and then redirect the output to the file `deployment.yaml`.
 
-As the app-loadbalancer requires environment variables to fill in the nginx configuration template, we will have to add this afterwards. We also want to tell that this container exposes port `80`. Open the file up and amend the `app-loadbalancer` with the following data:
+As the app-loadbalancer requires environment variables to fill in the nginx configuration template, we will have to add this afterwards. We also want to tell that this container exposes port `80`. Open the file up and amend the `app-loadbalancer` with the following lines (marked with `+` to show what to add):
 ```
        - image: app-loadbalancer
          name: app-loadbalancer
@@ -57,7 +55,6 @@ As the app-loadbalancer requires environment variables to fill in the nginx conf
 ```
 
 Now we need to create a service. In a similar fashion we can run:
-
 ```
 kubectl create service clusterip app -o yaml --tcp=80:80 --dry-run=client > service.yaml
 ```
@@ -65,7 +62,6 @@ kubectl create service clusterip app -o yaml --tcp=80:80 --dry-run=client > serv
 This will create a service configuration named `app` which exposes port `80` towards the deployment.
 
 Now to create the kustomize file to bundle these within. First we have to create the file so kustomize has a file to work with, then we can add the resources to it.
-
 ```
 $ touch kustomization.yaml
 $ kustomize edit add resource deployment.yaml
@@ -76,16 +72,14 @@ The base should now be done.
 
 ## Creating an overlay
 
-Lets move back out of the base directory and create the directory structure for a local overlay and go that directory.
-
+Lets move back out of the base directory and create the directory structure for a local overlay and go into that directory instead.
 ```
 $ cd ..
 $ mkdir -p overlays/local
 $ cd overlays/local
 ```
 
-Since we currently do not have anything special to add to the local overlay, just created a `kustomization.yaml` configuration file and include the base directory into it. This will make it include whatever is done within `kustomization.yaml` file in the base directory and we can add to it.
-
+Since we currently do not have anything special to add to the local overlay, just create a `kustomization.yaml` configuration file and include the base directory into it. This will make it include whatever is done within the `kustomization.yaml` file in the base directory and add to it through the local overlays file.
 ```
 $ touch kustomization.yaml
 $ kustomize edit add resource ../../base
@@ -107,6 +101,7 @@ You will then be prompted to answer two questions regarding what dockerfiles to 
   Docker (Dockerfile-loadbalancer)
   None (image not built from these sources)
 ```
+
 Once both images have been selected, it will output the finished configuration and prompt if you want it to create the configuration file. Once you respond with `y` everything should be setup.
 
-You should now be ready to run the project using `skaffold run -p local` or if you want it to continously deploy whenever you do changes you can run it using `skaffold dev -p local`.
+You should now be ready to run the project using `skaffold run -p local`. If you want it to continously deploy whenever you do changes you can run it using `skaffold dev -p local`.
