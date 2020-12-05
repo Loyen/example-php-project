@@ -20,8 +20,6 @@ spec:
       containers:
       - image: app-frontend
         name: app-frontend
-        ports:
-        - containerPort: 9000
         resources: {}
       - image: app-loadbalancer
         name: app-loadbalancer

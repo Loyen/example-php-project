@@ -11,10 +11,6 @@ spec:
     port: 80
     protocol: TCP
     targetPort: 80
-  - name: 9000-9000
-    port: 9000
-    protocol: TCP
-    targetPort: 9000
   selector:
     app: app
   type: ClusterIP
