@@ -52,8 +52,8 @@ As the app-loadbalancer requires environment variables to fill in the nginx conf
 +        ports:
 +        - containerPort: 80
 +        env:
-+          - name: FASTCGI_PASS
-+            value: "127.0.0.1:9000"
++        - name: FASTCGI_PASS
++          value: "127.0.0.1:9000"
 ```
 
 Now we need to create a service. In a similar fashion we can run:
