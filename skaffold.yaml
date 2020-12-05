@@ -4,10 +4,10 @@ metadata:
   name: example-php-project
 build:
   artifacts:
-  - image: localhost:32000/app-frontend
+  - image: app-frontend
     docker:
       dockerfile: Dockerfile-frontend
-  - image: localhost:32000/app-loadbalancer
+  - image: app-loadbalancer
     docker:
       dockerfile: Dockerfile-loadbalancer
 deploy:

@@ -18,12 +18,12 @@ spec:
         app: app
     spec:
       containers:
-      - image: localhost:32000/app-frontend
+      - image: app-frontend
         name: app-frontend
         ports:
         - containerPort: 9000
         resources: {}
-      - image: localhost:32000/app-loadbalancer
+      - image: app-loadbalancer
         name: app-loadbalancer
         ports:
         - containerPort: 80
