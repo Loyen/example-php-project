@@ -1,6 +1,8 @@
 # Example PHP Project
 
-This is an example project made to show how to setup a PHP project to be run through either Docker Compose or Kubernetes. It uses Nginx as a loadbalancer which forwards PHP requests to a PHP FPM container.
+This is an example project made to show how to setup a PHP project to be run through either Docker
+Compose or Kubernetes. It uses Nginx as a loadbalancer which forwards PHP requests to a PHP FPM
+container.
 
 Both are setup in pretty similar ways, but there are differences.
 
@@ -8,10 +10,14 @@ When we run the project through `docker-compose up`, we start two containers:
 * `app` (our PHP-FPM container)
 * `loadbalancer` (our nginx container)
 
-These use the official images from Nginx and PHP-FPM which we then mount our configuration and source code into using volumes.
+These use the official images from Nginx and PHP-FPM which we then mount our configuration and
+source code into using volumes.
 
-When we run `skaffold run -p local` to deploy the project to Kubernetes using the local profile, it builds two docker images prior to deployment:
+When we run `skaffold run -p local` to deploy the project to Kubernetes using the local profile, it
+builds two docker images prior to deployment:
 * `app-backend`
 * `app-loadbalancer`
 
-These will copy our configuration as well as the source code into the images and then use these images in our deployment. If we use `skaffold dev -plocal` these images will be rebuilt everytime our configuration or source code changes.
+These will copy our configuration as well as the source code into the images and then use these
+images in our deployment. If we use `skaffold dev -plocal` these images will be rebuilt everytime
+our configuration or source code changes.
