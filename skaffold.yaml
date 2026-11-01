@@ -6,10 +6,10 @@ build:
   artifacts:
   - image: app-backend
     docker:
-      dockerfile: Dockerfile-backend
+      dockerfile: backend.Containerfile
   - image: app-loadbalancer
     docker:
-      dockerfile: Dockerfile-loadbalancer
+      dockerfile: loadbalancer.Containerfile
 deploy:
   kustomize:
     paths:
